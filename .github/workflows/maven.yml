@@ -37,21 +37,23 @@ jobs:
         env:
           # to get access to secrets.SONAR_TOKEN, provide GITHUB_TOKEN
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: sonar-scanner
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.branch.name=${GITHUB_REF:11}
-          -Dsonar.scm.provider=git
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rajpalvaghela_Test1 -Dsonar.branch.name=${GITHUB_REF:11}
+           #sonar-scanner
+          #-Dsonar.host.url=${{ secrets.SONAR_URL }}
+          #-Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          #-Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          #-Dsonar.branch.name=${GITHUB_REF:11}
+          #-Dsonar.scm.provider=git
 
       - if: endsWith(github.REF, '/master') == true
         name: 'Run an analysis of the master branch'
         env:
           # to get access to secrets.SONAR_TOKEN, provide GITHUB_TOKEN
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: sonar-scanner
-          -Dsonar.host.url=${{ secrets.SONAR_URL }}
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.scm.provider=git
-          -Dsonar.java.binaries=/tmp
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=rajpalvaghela_Test1
+          #sonar-scanner
+          #-Dsonar.host.url=${{ secrets.SONAR_URL }}
+          #-Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          #-Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          #-Dsonar.scm.provider=git
+          #-Dsonar.java.binaries=/tmp
